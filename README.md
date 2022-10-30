@@ -25,8 +25,9 @@ Hero on Parole is a game in which you have absolute power over fellow citizens a
 - Improved AIs for criminals and civilians. 
 - A global high scoreboard.
 
+# Dev Notes
+Even though the game is currently playable, I would like to publish the game with many more features I have in mind to make it a long-lasting decent game rather than a cheap hypercasual one. 
 
-
-# Summary
-Even though the game is currently playable, I would like to publish the game with many more features I have in mind to make it a long-lasting decent game rather than a cheap hypercasual one. You can see the current demo of the game from [here](https://www.youtube.com/watch?v=NXQJ9iR5BkA&t=3s&ab_channel=DeepTurkishWeb). 
+# Demo
+You can see the current demo of the game from [here](https://www.youtube.com/watch?v=NXQJ9iR5BkA&t=3s&ab_channel=DeepTurkishWeb). 
 
