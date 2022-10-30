@@ -13,6 +13,7 @@ Hero on Parole is a game in which you have absolute power over fellow citizens a
 - Realistic 2D lighting and visual effects. 
 - Hero and civilian animations. 
 - Particle effects. 
+- Parallexed background. 
 
 # What will be added
 - Full-day and full-night modes will be added to the game. 
@@ -23,11 +24,12 @@ Hero on Parole is a game in which you have absolute power over fellow citizens a
 - Peaceful mode challenge.
 - Different skins for playable heroes. 
 - Improved AIs for criminals and civilians. 
+- Different sets of backgrounds changing as you keep going. 
 - A global high scoreboard.
 
 # Dev Notes
 Even though the game is currently playable, I would like to publish the game with many more features I have in mind to make it a long-lasting decent game rather than a cheap hypercasual one. 
 
-# Demo
+# Gameplay Video
 You can see the current demo of the game from [here](https://www.youtube.com/watch?v=NXQJ9iR5BkA&t=3s&ab_channel=DeepTurkishWeb). 
 
