@@ -14,7 +14,7 @@ Hero on Parole is a game in which you have absolute power over fellow citizens a
 - Hero and civilian animations. 
 - Particle effects. 
 - Parallexed background. 
-- Heat bar that displays the heat of the player. The player is not permitted to shoot laser beams for a short period of time when its overheated. 
+- A Heat bar that displays the heat. The player is not permitted to shoot laser beams for a short period of time when its overheated. 
 
 # What will be added / Currently working on 
 - Full-day and full-night modes will be added to the game. 
@@ -25,7 +25,9 @@ Hero on Parole is a game in which you have absolute power over fellow citizens a
 - Peaceful mode challenge.
 - Different skins for playable heroes. 
 - Improved AIs for criminals and civilians. 
-- Different sets of backgrounds changing as you keep going. 
+- Different sets of backgrounds alternating as the game progresses.  
+- Official soundtrack for the game. 
+- Dynamic billboards which will change depending on player's actions. 
 - A global high scoreboard.
 
 # Dev Notes
