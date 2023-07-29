@@ -5,7 +5,7 @@ The game contains mild graphic content such as pixel blood particles and texture
 # Game Description
 Hero on Parole is a game in which you have absolute power over fellow citizens and criminals. With great power, comes great responsibility! As the strongest man on the planet, you are expected to stop all present crimes. You start the game with 3 honour badges. You lose a badge whenever you do harm to a civilian or let a criminal escape. Also, you will be able to collect more honour badges as you keep fighting against crime while ensuring civilians' safety. How long will you be able to keep fighting crime without causing so much collateral damage? :)
 
-# Current Properties of the game. 
+# Game details:
 - 3 types of criminals. 
 - Fully dynamic night and day cycle with dynamic lighting. 
 - Dynamic blood splatter on the player's body with 6 different levels. 
@@ -16,7 +16,7 @@ Hero on Parole is a game in which you have absolute power over fellow citizens a
 - Parallexed background. 
 - A Heat bar that displays the heat. The player is not permitted to shoot laser beams for a short period of time when its overheated. 
 
-# What will be added / Currently working on 
+# What is going to be added:
 - Full-day and full-night modes will be added to the game. 
 - More types of crimes with varying difficulties. 
 - Collecting Badges after travelling some distance and resolving some amount of crime. 
