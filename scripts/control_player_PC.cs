@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class control_player : MonoBehaviour
+public class control_player_PC : MonoBehaviour
 {
-
+    
 
     #region Objects
-    Transform crimescene;
-    crimescene crimeType;
-    [SerializeField] LayerMask LM;
+    Transform crimescene; 
+    crimescene crimeType; 
+    [SerializeField] LayerMask LM;  
     [SerializeField] Camera cam;
     SpriteRenderer sr;
     Vector2 movement;
-    Rigidbody2D rb;
+    Rigidbody2D rb; 
     #endregion
 
 
     #region Animation
-    [SerializeField] Animator anim;
-    #endregion
+    [SerializeField] Animator anim; 
+    #endregion 
 
     #region Head;
-    [SerializeField] GameObject head;
-    [SerializeField] Animator headAnim;
-    SpriteRenderer headSr;
+    [SerializeField] GameObject head; 
+    [SerializeField]Animator headAnim;
+     SpriteRenderer headSr;
     #endregion
 
     #region Blood;
@@ -40,31 +40,30 @@ public class control_player : MonoBehaviour
 
     #region Laser; 
     bool lasering = false, overHeat = false;
-    [SerializeField] float laserDistance;
-    public LineRenderer LR;
-    [SerializeField] GameObject eye;
+    [SerializeField] float laserDistance; 
+    public LineRenderer LR; 
+    [SerializeField] GameObject eye; 
     Vector3 laser_aim;
     RaycastHit2D[] hitInfo;
-    Vector2 eyePos;
+    Vector2 eyePos; 
     Vector2 direction;
-    Vector3 screenPoint;
+    Vector3 screenPoint; 
     Vector3 mousePos;
-    float heat = 0.0f, heatLimit = 1;
+    float heat = 0.0f, heatLimit = 1; 
     public Sprite overHeatFrameImg, heatFrameImg;
     public Image heatFrame, heatBar;
-    public Animator heatAnim;
+    public Animator heatAnim; 
     #endregion
 
 
     #region GameStats
-    GC gameController;
-    [SerializeField] float movement_speed = 4, gravityscale = 1f;
+    GC gameController; 
+    [SerializeField] float  movement_speed = 4,gravityscale = 1f;
     float groundLevel = -4;
     bool isFlying = false;
-    public int civKillCount = 0;
-    Touch touch; 
+    public int civKillCount = 0; 
     #endregion
-
+     
 
     #region CivilianBlood
     public bool isStunned = false;
@@ -92,10 +91,10 @@ public class control_player : MonoBehaviour
         headSr = head.transform.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GC>();
-
-        heatBar.fillAmount = 0.0f;
-
-        rb.velocity = transform.right * 4;
+        
+        heatBar.fillAmount = 0.0f; 
+        
+        rb.velocity = transform.right*4;
     }
 
     public void BloodSplatter(GameObject target)
@@ -103,7 +102,7 @@ public class control_player : MonoBehaviour
         int randomSize = Random.Range(0, 2);
 
         ParticleSystem boneP = Instantiate(boneParticles, new Vector3(target.transform.position.x, target.transform.position.y + 1f, -5), Quaternion.identity);
-        ParticleSystem bloodP = Instantiate(bloodParticles, new Vector3(target.transform.position.x, target.transform.position.y + 0.7f, -5), Quaternion.identity);
+        ParticleSystem bloodP = Instantiate(bloodParticles, new Vector3(target.transform.position.x, target.transform.position.y+ 0.7f, -5), Quaternion.identity);
         GameObject bloodS = Instantiate(bloodSplatter, new Vector3(target.transform.position.x, target.transform.position.y - 0.6f, -5), Quaternion.identity);
         ParticleSystem fleshP = Instantiate(fleshParticles, new Vector3(target.transform.position.x, target.transform.position.y + 1.5f, -5), Quaternion.identity);
 
@@ -125,31 +124,28 @@ public class control_player : MonoBehaviour
     }
 
 
-    Vector2 LaserFixer(Vector2 start, Vector2 end)
-    {
+    Vector2 LaserFixer(Vector2 start , Vector2 end){
 
         float multiplier = 1.1f;
 
-        while (Mathf.Abs(Vector2.Distance(start, end)) < laserDistance)
-        {
-
-            end *= multiplier;
-
+        while(Mathf.Abs(Vector2.Distance(start, end))<laserDistance){
+            
+            end *= multiplier;  
+            
 
         }
 
         return end;
     }
-
-    void Gravity()
-    {
-
-
-        if (!isFlying) transform.Translate(Time.deltaTime * gravityscale * Vector3.down);
+  
+    void Gravity(){
+        
+        
+       if(!isFlying) transform.Translate(Time.deltaTime * gravityscale * Vector3.down);
     }
 
 
-
+   
 
 
     IEnumerator OverHeat()
@@ -157,10 +153,10 @@ public class control_player : MonoBehaviour
         clearLaser();
         lasering = false;
         heatFrame.sprite = overHeatFrameImg;
-        heatAnim.SetBool("overheat", true);
+        heatAnim.SetBool("overheat", true); 
         yield return new WaitForSeconds(3);
 
-
+        
         overHeat = false;
 
         heatFrame.sprite = heatFrameImg;
@@ -170,15 +166,14 @@ public class control_player : MonoBehaviour
 
     }
 
-    IEnumerator ChargeLaser()
-    {
+    IEnumerator ChargeLaser(){  
 
         anim.SetBool("isLasering", true);
-
+            
         bloodAnim.SetBool("lasering", true);
+       
 
-
-        headAnim.SetBool("headLasering", true);
+        headAnim.SetBool("headLasering", true); 
 
         yield return new WaitForSeconds(0.2f);
 
@@ -202,64 +197,54 @@ public class control_player : MonoBehaviour
 
     }
 
-    void ShootLaser(Vector3 start, Vector3 end)
-    {
+    void ShootLaser(Vector3 start, Vector3 end){
+        
 
 
-
-        LR.SetPosition(0, start);
-        LR.SetPosition(1, end);
+        LR.SetPosition(0,start);
+        LR.SetPosition(1,end);
 
         hitInfo = Physics2D.LinecastAll(start, end, LM);
 
 
         if (hitInfo.Length > 0)
         {
-            for (int i = 0; i < hitInfo.Length; i++)
+            for(int i =0; i<hitInfo.Length; i++)
             {
-
-                if (hitInfo[i].collider.tag == "hostage")
-                {
-
+                
+                if(hitInfo[i].collider.tag=="hostage"){
+          
                     CheckHostageKill(hitInfo[i].collider.gameObject);
-                }
-                else if (hitInfo[i].collider.tag == "criminal")
-                {
+                }else if(hitInfo[i].collider.tag=="criminal"){
 
-
+            
                     CheckCriminalKill(hitInfo[i].collider.gameObject);
 
-                }
-                else if (hitInfo[i].collider.tag == "civilian")
-                {
-
+                }else if(hitInfo[i].collider.tag=="civilian"){
+      
                     CivilianKill(hitInfo[i].collider.gameObject);
-                }
-                else if (hitInfo[i].collider.tag == "Rocket")
-                {
+                }else if(hitInfo[i].collider.tag=="Rocket"){
 
                     hitInfo[i].collider.GetComponent<rocket>().explode();
                     Destroy(hitInfo[i].collider.gameObject);
-                }
-                else if (hitInfo[i].collider.tag == "moneybag")
+                }else if(hitInfo[i].collider.tag == "moneybag")
                 {
-
+                    
                     ParticleSystem moneyLoad = Instantiate(money, hitInfo[i].collider.transform.position, Quaternion.identity);
                     Destroy(hitInfo[i].collider.gameObject);
                     gameController.crimesStopped++;
                 }
-
-
+                
+               
             }
         }
 
     }
 
-    void CheckCriminalKill(GameObject criminal)
-    {
+    void CheckCriminalKill(GameObject criminal){
 
-
-        crimescene = criminal.transform.parent;
+        
+        crimescene = criminal.transform.parent; 
         crimeType = crimescene.GetComponent<sceneOperator>().crimeType;
         if (!crimeType.crimeOnAir)
         {
@@ -270,26 +255,24 @@ public class control_player : MonoBehaviour
             Explosion(criminal);
         }
         Destroy(criminal.gameObject);
-        crimescene.GetComponent<sceneOperator>().crimeType.criminalCount -= 1;
-        if (gameController.CheckCrime(crimescene, crimeType)) gameController.crimesStopped++;
-
+        crimescene.GetComponent<sceneOperator>().crimeType.criminalCount -= 1; 
+        if(gameController.CheckCrime(crimescene, crimeType))gameController.crimesStopped++; 
+       
     }
 
-    void CheckHostageKill(GameObject hostage)
-    {
-
+    void CheckHostageKill(GameObject hostage){
+        
         crimescene = hostage.transform.parent;
         crimeType = crimescene.GetComponent<sceneOperator>().crimeType;
         BloodSplatter(hostage);
-        Destroy(hostage.gameObject);
+        Destroy(hostage.gameObject); 
         gameController.Criminal_Escape(crimescene.transform);
-        if (!gameController.CheckCrime(crimescene, crimeType) && crimescene.GetComponent<sceneOperator>().crimeResolved) gameController.crimesStopped--;
+        if(!gameController.CheckCrime(crimescene, crimeType)&&crimescene.GetComponent<sceneOperator>().crimeResolved)gameController.crimesStopped--;
         gameController.ReduceBadge();
         civKillCount++;
     }
 
-    void CivilianKill(GameObject civilian)
-    {
+    void CivilianKill(GameObject civilian){
 
         if (civilian.GetComponent<civilianAI>().type == 0)
         {
@@ -299,19 +282,18 @@ public class control_player : MonoBehaviour
         {
             Explosion(civilian);
         }
-
-
+        
+        
         gameController.ReduceBadge();
         gameController.MassEscape(civilian.transform.position);
         Destroy(civilian.gameObject);
         civKillCount++;
-
+        
     }
 
 
 
-    void clearLaser()
-    {
+    void clearLaser(){
 
         LR.SetPosition(0, Vector3.zero);
         LR.SetPosition(1, Vector3.zero);
@@ -319,20 +301,17 @@ public class control_player : MonoBehaviour
 
 
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+   private void OnTriggerEnter2D(Collider2D other) {
+        
 
-
-        if (other.CompareTag("criminal"))
-        {
+        if(other.CompareTag("criminal")){
 
 
             CheckCriminalKill(other.gameObject);
             bloodLevel += bloodIncrement;
             BloodLevelAdjuster(bloodLevel);
         }
-        else if (other.CompareTag("hostage"))
-        {
+        else if(other.CompareTag("hostage")){
 
             CheckHostageKill(other.gameObject);
             bloodLevel += bloodIncrement;
@@ -340,8 +319,7 @@ public class control_player : MonoBehaviour
 
 
         }
-        else if (other.CompareTag("civilian"))
-        {
+        else if(other.CompareTag("civilian")){
 
             CivilianKill(other.gameObject);
             bloodLevel += bloodIncrement;
@@ -375,129 +353,56 @@ public class control_player : MonoBehaviour
 
     }
 
-
-
-
-
     void Update()
     {
-
-
         
+        eyePos = eye.transform.position;
+        screenPoint = Input.mousePosition;
+        mousePos = cam.ScreenToWorldPoint(screenPoint);
         heatBar.fillAmount = heat;
-
-        if (Input.touchCount >= 1)
-        {
-
-
-            
-            for (int i = 0; i<Input.touchCount; i++)
-            {
-
-                Touch t = Input.GetTouch(i);
-               
-                if (t.phase == TouchPhase.Began)
-                {
-                  
-
-                    if (isJumping(t))
-                    {
-                        
-                        isFlying = true;
-                    }
-                    else
-                    {
-                        
-                        StartCoroutine(ChargeLaser());
-                    }
-
-                }
-                else if (t.phase == TouchPhase.Ended) {
-
-                    if (isJumping(t))
-                    {
-
-                    
-                         isFlying = false;
-                       
-                    }
-                    else
-                    {
-
-                        StartCoroutine(StopLasering());
-                    }
-
-
-                }
-                else
-                {
-                    
-                        eyePos = eye.transform.position;
-                        screenPoint = Input.GetTouch(i).position;
-                        mousePos = cam.ScreenToWorldPoint(screenPoint);
-                    
-                    
-                }
-
-
-
-
-
-            }
-
-            
-
-
-
-
-        }
-
-
-
         #region Clamp
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, cam.transform.position.x - 8.5f,
-        cam.transform.position.x + 8.5f), Mathf.Clamp(transform.position.y, groundLevel, cam.transform.position.y + 4.2f),
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x,cam.transform.position.x-8.5f, 
+        cam.transform.position.x + 8.5f), Mathf.Clamp(transform.position.y, groundLevel, cam.transform.position.y+4.2f),
          -1);
         #endregion
 
         #region Movement
 
+        if(Input.GetKeyDown("space")){
+            isFlying = true;                   
+            
+        }
 
-        if (isFlying)
-        {
-            transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, transform.position.y + 0.01f), Time.fixedDeltaTime * 10000);
+        if(Input.GetKeyUp("space")){
+            
+            isFlying = false; 
+        }
+
+        if(isFlying){
+            transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, transform.position.y+0.01f),  Time.fixedDeltaTime *10000) ;
         }
 
         #endregion
 
-        
+        if (Input.GetMouseButtonDown(0)&&!overHeat)
+        {
+            StartCoroutine(ChargeLaser());
+          
+        }
+
         if (lasering)
         {
 
             ShootLaser(new Vector3(eyePos.x, eyePos.y, -5), new Vector3(mousePos.x, mousePos.y, -5));
-
-
+            
+            
         }
 
-    }
-
-
-    bool isJumping(Touch touch)
-    {
-
-
-        if(touch.position.x >=-1000 && touch.position.x <= 1200)
+        if (Input.GetMouseButtonUp(0))
         {
-
-            return true; 
-
+            StartCoroutine(StopLasering());
+           
         }
-        
-        return false; 
-
-        
-
-
     }
 
     IEnumerator HeatUp()
@@ -506,13 +411,13 @@ public class control_player : MonoBehaviour
         {
             heat += 0.01f;
             yield return new WaitForSeconds(0.05f);
-
+            
             if (heat > heatLimit)
             {
                 overHeat = true;
 
                 StartCoroutine(OverHeat());
-
+               
             }
         }
     }
@@ -523,7 +428,7 @@ public class control_player : MonoBehaviour
         {
             heat -= 0.01f;
             yield return new WaitForSeconds(0.05f);
-
+       
             if (heat < 0) heat = 0;
 
         }
@@ -531,6 +436,9 @@ public class control_player : MonoBehaviour
 
 
     }
+
+
+
 
 
 }

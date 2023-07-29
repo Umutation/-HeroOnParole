@@ -58,7 +58,6 @@ public class GC : MonoBehaviour
     DepthOfField blur;
     Bloom shining;  
     ChromaticAberration ca; 
-    [SerializeField] GameObject blurColour;
     #endregion
 
     #region UI
@@ -120,7 +119,6 @@ public class GC : MonoBehaviour
 
         yield return new WaitForSeconds(5);
         player.GetComponent<control_player>().isStunned = false; 
-        blurColour.SetActive(false);
     }
 
     IEnumerator DistanceTravelled(){
@@ -193,8 +191,8 @@ public class GC : MonoBehaviour
 
         if (!gameOver)
         {
-            Destroy(badges.transform.GetChild(badges.transform.childCount - 1).gameObject);
-            billboardChanged = true; 
+            //Destroy(badges.transform.GetChild(badges.transform.childCount - 1).gameObject);
+            //billboardChanged = true; 
 
         }
 

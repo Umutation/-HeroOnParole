@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class dayClock : MonoBehaviour
 {
-    Volume vol;
+    public Volume vol;
     public float tick, seconds, bgWaitTime = 0.05f;
     public int mins = 0, hours = 0, days = 0, lightsOnTime;
     float H = 0.555f, S = 1  , V = 1;
@@ -129,7 +129,8 @@ public class dayClock : MonoBehaviour
 
                     lights[i].SetActive(true);
                 }
-                curbSun.SetActive(false);
+                //curbSun.SetActive(false);
+
 
                 activateLights = true; 
             }
@@ -151,7 +152,7 @@ public class dayClock : MonoBehaviour
                     lights[i].SetActive(false);
                     
                 }
-                curbSun.SetActive(true);
+                //curbSun.SetActive(true);
                 activateLights = false;
 
             }
