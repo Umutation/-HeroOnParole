@@ -35,6 +35,6 @@ Even though the game is currently playable, I would like to publish the game wit
 
 
 # Gameplay Video
-You can see the current demo of the game from [here](https://www.youtube.com/watch?v=2aRjRUn2N1g&ab_channel=Makine). 
+You can see the current demo of the game [here](https://www.youtube.com/watch?v=2aRjRUn2N1g&ab_channel=Makine). 
 PS: The soundtrack in the footage is not the official soundtrack of the game. But the official soundtrack will be somewhat similar to the one in the footage. 
 
